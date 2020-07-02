@@ -1,7 +1,7 @@
 package com.bpbd.www.bpbdjember.helper;
 
-import android.app.Activity;
 import android.content.Context;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +13,11 @@ import com.bpbd.www.bpbdjember.R;
 import java.util.List;
 
 public class AdapterKategori extends BaseAdapter {
-    private Activity activity;
+    private AppCompatActivity activity;
     private LayoutInflater inflater;
     List<DataKategori> item;
 
-    public AdapterKategori(Activity activity, List<DataKategori> item){
+    public AdapterKategori(AppCompatActivity activity, List<DataKategori> item){
         this.activity = activity;
         this.item = item;
     }

@@ -5,6 +5,7 @@
     android:id="@+id/ScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_blur"
     android:scrollbars="vertical"
     tools:context=".LaporFragment">
 
@@ -19,33 +20,46 @@
         <EditText
             android:id="@+id/nama"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:ems="10"
             android:inputType="textPersonName"
+            android:background="@drawable/rounded"
             android:hint="Nama Pelapor"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="4dp"
-            android:backgroundTint="@color/colorPrimary"/>
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            />
         <EditText
             android:id="@+id/alamat"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:ems="10"
             android:inputType="textMultiLine"
+            android:background="@drawable/rounded"
             android:hint="Alamat Pelapor"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="4dp"
-            android:backgroundTint="@color/colorPrimary"/>
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:layout_marginBottom="4dp" />
         <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:ems="10"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
             android:inputType="textEmailAddress"
             android:hint="Email Pelapor"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="4dp"
-            android:backgroundTint="@color/colorPrimary"/>
+            android:background="@drawable/rounded"/>
         <Spinner
             android:id="@+id/spinnerKategori"
             style="@android:style/Widget.DeviceDefault.Spinner"
@@ -53,19 +67,23 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/rounded_yellow"
+            android:background="@drawable/rounded"
             android:popupBackground="@drawable/rounded_yellow"
             android:spinnerMode="dropdown" />
         <EditText
             android:id="@+id/lokasi"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="8dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
             android:ems="10"
             android:inputType="text"
             android:hint="Lokasi Bencana"
-            android:backgroundTint="@color/colorPrimary"/>
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:background="@drawable/rounded"/>
 
         <EditText
             android:id="@+id/detail_laporan"
@@ -73,12 +91,16 @@
             android:layout_height="100dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="4dp"
-            android:backgroundTint="@color/colorPrimary"
+            android:background="@drawable/rounded"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
             android:ems="10"
+            android:textColor="@color/black"
             android:hint="Detail Laporan (Cth. Dampak bencana)"
+            android:textColorHint="@color/black"
             android:inputType="textMultiLine" />
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -107,7 +129,7 @@
                 android:text="Upload Foto Lokasi Bencana"
                 app:layout_constraintStart_toEndOf="@+id/btn_image"
                 app:layout_constraintTop_toTopOf="@+id/btn_image" />
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/gambarBcn"

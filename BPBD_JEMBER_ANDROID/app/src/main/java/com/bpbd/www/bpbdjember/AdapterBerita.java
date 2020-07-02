@@ -2,7 +2,7 @@ package com.bpbd.www.bpbdjember;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +43,7 @@ class AdapterBerita extends RecyclerView.Adapter<AdapterBerita.MyViewHolder> {
         holder.tvIdBerita.setText(berita.get(position).getIDBRT());
 
         // Dapatkan url gambar
-        final String urlGambarBerita = "http://192.168.0.107/Kel2_TIF-D/BPBD_JEMBER_WEB/assets/img/berita_gambar/" + berita.get(position).getGAMBARBRT();
+        final String urlGambarBerita = "http://192.168.1.3/Kel2_TIF-D/BPBD_JEMBER_WEB/assets/img/berita_gambar/" + berita.get(position).getGAMBARBRT();
         // Set image ke widget dengna menggunakan Library Piccasso
         // krena imagenya dari internet
         Picasso.with(context).load(urlGambarBerita).into(holder.ivGambarBerita);

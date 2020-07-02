@@ -2,10 +2,10 @@ package com.bpbd.www.bpbdjember;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -31,7 +31,7 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                String bodyText = "http://192.168.0.107/Kel2_TIF-D/BPBD_JEMBER_WEB/beranda/baca/" + getIntent().getStringExtra("ID_BERITA");
+                String bodyText = "http://192.168.1.3/Kel2_TIF-D/BPBD_JEMBER_WEB/beranda/baca/" + getIntent().getStringExtra("ID_BERITA");
                 intent.putExtra(Intent.EXTRA_SUBJECT, bodyText);
                 intent.putExtra(Intent.EXTRA_TEXT, bodyText);
                 startActivity(intent.createChooser(intent, "Share Option"));

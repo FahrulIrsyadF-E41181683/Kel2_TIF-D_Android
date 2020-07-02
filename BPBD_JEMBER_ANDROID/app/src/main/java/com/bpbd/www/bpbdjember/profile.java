@@ -1,8 +1,5 @@
 package com.bpbd.www.bpbdjember;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -11,6 +8,9 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -19,8 +19,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,17 +29,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bpbd.www.bpbdjember.helper.SessionManager;
 // import com.example.androidlogin.helper.SessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,9 +62,9 @@ public class profile extends AppCompatActivity {
     SessionManager sessionManager;
     String getId;
     String BaseUrl;
-    String URL_EDIT = "http://192.168.1.16/Kel2_TIF-D/BPBD_JEMBER_WEB/api/profil/getprofil";
-    String URL_SAVE = "http://192.168.1.16/Kel2_TIF-D/BPBD_JEMBER_WEB/api/profil/Profil";
-    String URL_UPLOAD = "http://192.168.1.16/Kel2_TIF-D/BPBD_JEMBER_WEB/api/profil/uploadfoto";
+    String URL_EDIT = "http://192.168.1.3/Kel2_TIF-D/BPBD_JEMBER_WEB/api/profil/getprofil";
+    String URL_SAVE = "http://192.168.1.3/Kel2_TIF-D/BPBD_JEMBER_WEB/api/profil/Profil";
+    String URL_UPLOAD = "http://192.168.1.3/Kel2_TIF-D/BPBD_JEMBER_WEB/api/profil/uploadfoto";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
