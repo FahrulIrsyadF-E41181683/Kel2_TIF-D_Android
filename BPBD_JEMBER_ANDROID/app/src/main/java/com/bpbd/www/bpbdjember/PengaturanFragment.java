@@ -38,6 +38,9 @@ import com.bpbd.www.bpbdjember.response.SessionManager;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import androidx.fragment.app.Fragment;
+
+public class PengaturanFragment extends Fragment {
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

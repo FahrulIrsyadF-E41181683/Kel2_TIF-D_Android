@@ -11,6 +11,7 @@
     <color name="biru">#6200EE</color>
     <color name="biru_button">#085F9B</color>
     <color name="yellow">#ffc246</color>
-    <color name="solidCircle">#ffffff</color>
-    <color name="circleBorder">#f1f1f1</color>
+    <color name="grey">#E5E5E5</color>
+    <color name="solidCircle">#AAFFFFFF</color>
+    <color name="circleBorder">#50FFFFFF</color>
 </resources>
