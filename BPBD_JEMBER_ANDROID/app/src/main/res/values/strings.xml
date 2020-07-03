@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">BPBD Jember</string>
     <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_regis">Registrasi Akun</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

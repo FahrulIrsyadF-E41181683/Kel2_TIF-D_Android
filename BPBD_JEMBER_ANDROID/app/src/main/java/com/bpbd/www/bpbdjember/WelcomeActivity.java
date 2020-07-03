@@ -2,7 +2,8 @@ package com.bpbd.www.bpbdjember;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -16,7 +17,7 @@ public class WelcomeActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent mainIntent = new  Intent(WelcomeActivity.this, MainActivity.class);
+                Intent mainIntent = new  Intent(WelcomeActivity.this, LoginActivity.class);
                 startActivity(mainIntent);
                 finish();
             }

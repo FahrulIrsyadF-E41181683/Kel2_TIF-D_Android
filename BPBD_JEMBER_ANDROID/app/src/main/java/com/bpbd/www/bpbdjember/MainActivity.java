@@ -2,35 +2,20 @@ package com.bpbd.www.bpbdjember;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.Toast;
-import android.support.v4.app.Fragment;
 
-import com.bpbd.www.bpbdjember.network.ApiServices;
-import com.bpbd.www.bpbdjember.network.InitRetrofit;
-import com.bpbd.www.bpbdjember.response.BeritaItem;
-import com.bpbd.www.bpbdjember.response.ResponseBerita;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
@@ -104,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
     }
 
-    private boolean loadFragment(Fragment fragment) {
+    private boolean loadFragment(BeritaFragment fragment) {
         if (fragment != null) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fl_container, fragment)
@@ -132,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 getSupportActionBar().setTitle("Pengaturan");
                 break;
         }
-        return loadFragment(fragment);
+        return loadFragment((BeritaFragment) fragment);
     }
 
 }

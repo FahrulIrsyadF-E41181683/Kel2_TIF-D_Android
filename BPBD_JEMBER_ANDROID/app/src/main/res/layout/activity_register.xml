@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:label="Registrasi"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:paddingTop="40dp"
+    android:background="@drawable/bg"
+    tools:context="com.bpbd.www.bpbdjember.RegisterActivity">
+
+    <TextView
+        android:id="@+id/tdaftar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="36dp"
+        android:layout_marginBottom="20dp"
+        android:text="Daftar Akun"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fnama"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:ignore="MissingConstraints"
+        android:textColorHint="@color/dark">
+
+        <EditText
+            android:id="@+id/etnama"
+            android:layout_width="332dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="36dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:background="@drawable/rounded"
+            android:hint="Nama"
+            android:textColor="@color/black"
+            android:inputType="textPersonName"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fusername"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:ignore="MissingConstraints"
+        android:textColorHint="@color/dark">
+
+        <EditText
+            android:id="@+id/etusername"
+            android:layout_width="332dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="36dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:background="@drawable/rounded"
+            android:hint="Username"
+            android:textColor="@color/black"
+            android:inputType="textPersonName"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/falamat"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:ignore="MissingConstraints"
+        android:textColorHint="@color/dark">
+
+        <EditText
+            android:id="@+id/etalamat"
+            android:layout_width="332dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="36dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:background="@drawable/rounded"
+            android:hint="Alamat"
+            android:textColor="@color/black"
+            android:inputType="textPostalAddress"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fnomer"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:ignore="MissingConstraints"
+        android:textColorHint="@color/dark">
+
+        <EditText
+            android:id="@+id/etnomer"
+            android:layout_width="332dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="36dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:background="@drawable/rounded"
+            android:maxLength="13"
+            android:hint="Nomer Telepon"
+            android:textColor="@color/black"
+            android:inputType="phone"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/femail"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:ignore="MissingConstraints"
+        android:textColorHint="@color/dark">
+
+        <EditText
+            android:id="@+id/etemail"
+            android:layout_width="332dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="36dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:background="@drawable/rounded"
+            android:hint="Email"
+            android:textColor="@color/black"
+            android:inputType="textEmailAddress"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fpassword"
+        android:gravity="center"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:ignore="MissingConstraints"
+        android:textColorHint="@color/dark">
+
+        <EditText
+            android:id="@+id/etpassword"
+            android:layout_width="332dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="36dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:background="@drawable/rounded"
+            android:hint="Password"
+            android:textColor="@color/black"
+            android:inputType="textPassword"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fc_password"
+        android:gravity="center"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:ignore="MissingConstraints"
+        android:textColorHint="@color/dark">
+
+        <EditText
+            android:id="@+id/etc_password"
+            android:layout_width="332dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="36dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:background="@drawable/rounded"
+            android:hint="Ulangi Password"
+            android:textColor="@color/black"
+            android:inputType="textPassword"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_marginTop="30dp"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+        android:id="@+id/btn_regist"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:layout_marginRight="30dp"
+        android:layout_gravity="right"
+        android:text="Registrasi"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/white"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:text="Sudah memiliki akun?"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="160dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_regist"/>
+
+    <TextView
+        android:id="@+id/tvLogin"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:text="Login disini"
+        android:textStyle="bold"
+        android:layout_marginLeft="185dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
