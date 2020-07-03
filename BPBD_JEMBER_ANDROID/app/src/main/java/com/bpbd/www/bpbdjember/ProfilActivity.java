@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -20,6 +18,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -78,7 +80,7 @@ public class ProfilActivity extends AppCompatActivity {
         Email = (TextView) findViewById(R.id.email);
         Nomer = (TextView) findViewById(R.id.nomer);
         Alamat = (TextView) findViewById(R.id.alamat);
-        EditButton = (Button) findViewById(R.id.button_edit);
+//        EditButton = (Button) findViewById(R.id.button_edit);
         Button_editphoto = (Button)findViewById(R.id.button_editfoto);
         profile_image = (CircleImageView) findViewById(R.id.foto_profil);
 

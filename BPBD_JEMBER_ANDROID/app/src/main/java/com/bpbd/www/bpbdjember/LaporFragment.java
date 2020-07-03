@@ -2,6 +2,7 @@ package com.bpbd.www.bpbdjember;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -24,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -45,7 +47,9 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,7 +57,7 @@ import java.util.Objects;
 
 
 public class LaporFragment extends Fragment {
-    private EditText nama, alamat, email, lokasi, detail_laporan;
+    private EditText nama, alamat, email, lokasi, detail_laporan, tanggal;
     private Spinner spinnerKategori;
     private Button btn_submit, btn_image;
     private List<DataKategori> listKategori = new ArrayList<DataKategori>();
@@ -61,10 +65,11 @@ public class LaporFragment extends Fragment {
     private ProgressDialog progressDialog;
     private AdapterKategori adapter;
     private SessionManager sessionManager;
-    private String tmpNama, tmpEmail, tmpAlamat, tmpLokasi, tmpDeskripsi, tmpKategori, tmpGambar;
+    private String tmpNama, tmpEmail, tmpAlamat, tmpLokasi, tmpDeskripsi, tmpKategori, tmpGambar, tmpTanggal;
     private Boolean CheckisEmpty;
     private Bitmap bitmap;
     private ImageView gambarBcn;
+    private Calendar myCalendar;
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,6 +85,7 @@ public class LaporFragment extends Fragment {
         btn_image = view.findViewById(R.id.btn_image);
         btn_submit = view.findViewById(R.id.btn_submit);
         gambarBcn = view.findViewById(R.id.gambarBcn);
+        tanggal = view.findViewById(R.id.tanggal);
         sessionManager = new SessionManager(getContext());
         progressDialog = new ProgressDialog(getContext());
         BaseUrl = sessionManager.BASE_URL;
@@ -116,6 +122,33 @@ public class LaporFragment extends Fragment {
                 }else{
                     Toast.makeText(getContext(),"Mohon isi semua field diatas", Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+
+        tanggal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        myCalendar.set(Calendar.YEAR, year);
+                        myCalendar.set(Calendar.MONTH, month);
+                        myCalendar.set(Calendar.DAY_OF_MONTH, day);
+
+                        String formatTanggal = "dd MMMM yyyy";
+                        SimpleDateFormat dbsdf = new SimpleDateFormat("yyyy-MM-dd");
+                        SimpleDateFormat sdf = new SimpleDateFormat(formatTanggal);
+                        tanggal.setText(sdf.format(myCalendar.getTime()));
+                        tmpTanggal = dbsdf.format(myCalendar.getTime());
+
+                        if (myCalendar.getTimeInMillis() < (System.currentTimeMillis() - 86401000)){
+                            Toast.makeText(getContext(), "Tanggal yang kamu pilih salah!", Toast.LENGTH_LONG).show();
+                            myCalendar.setTimeInMillis(System.currentTimeMillis() - 1000);
+                            tanggal.setText(sdf.format(myCalendar.getTime()));
+                        }
+                    }
+                }, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
@@ -208,6 +241,7 @@ public class LaporFragment extends Fragment {
         tmpEmail = email.getText().toString().trim();
         tmpLokasi = lokasi.getText().toString().trim();
         tmpDeskripsi = detail_laporan.getText().toString().trim();
+        tmpTanggal = tanggal.getText().toString().trim();
 
         CheckisEmpty = !TextUtils.isEmpty(tmpNama) && !TextUtils.isEmpty(tmpEmail) && !TextUtils.isEmpty(tmpAlamat) && !TextUtils.isEmpty(tmpLokasi)&& !TextUtils.isEmpty(tmpDeskripsi);
     }
@@ -299,6 +333,7 @@ public class LaporFragment extends Fragment {
                 params.put("EMAIL", tmpEmail);
                 params.put("KATEGORI", tmpKategori);
                 params.put("LOKASI", tmpLokasi);
+                params.put("TANGGAL", tmpTanggal);
                 params.put("DESKRIPSI", tmpDeskripsi);
                 params.put("GAMBAR", tmpGambar);
                 params.put("Content-Type", "application/x-www-form-urlencoded");
