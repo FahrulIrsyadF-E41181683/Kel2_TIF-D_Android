@@ -1,16 +1,15 @@
 package com.bpbd.www.bpbdjember;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -19,8 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,24 +30,22 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bpbd.www.bpbdjember.helper.SessionManager;
 // import com.example.androidlogin.helper.SessionManager;
+import com.bpbd.www.bpbdjember.response.SessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class profile extends AppCompatActivity {
+public class ProfilActivity extends AppCompatActivity {
     //getting the info
-    private static final String TAG= profile.class.getSimpleName();
+    private static final String TAG= ProfilActivity.class.getSimpleName();
     private Menu action;
     private Bitmap bitmap;
 
@@ -67,16 +62,13 @@ public class profile extends AppCompatActivity {
     SessionManager sessionManager;
     String getId;
     String BaseUrl;
-    String URL_EDIT = "http://192.168.1.16/Kel2_TIF-D/BPBD_JEMBER_WEB/api/profil/getprofil";
-    String URL_SAVE = "http://192.168.1.16/Kel2_TIF-D/BPBD_JEMBER_WEB/api/profil/Profil";
-    String URL_UPLOAD = "http://192.168.1.16/Kel2_TIF-D/BPBD_JEMBER_WEB/api/profil/uploadfoto";
-
+    String URL_EDIT = "http://192.168.1.15/Kel2_TIF-D/BPBD_JEMBER_WEB/api/profil/getprofil";
+    String URL_SAVE = "http://192.168.1.15/Kel2_TIF-D/BPBD_JEMBER_WEB/api/profil/Profil";
+    String URL_UPLOAD = "http://192.168.1.15/Kel2_TIF-D/BPBD_JEMBER_WEB/api/profil/getFoto";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-
-
+        setContentView(R.layout.activity_profil);
         sessionManager = new SessionManager(this);
 //        sessionManager.checkLogin();
 
@@ -92,13 +84,6 @@ public class profile extends AppCompatActivity {
         Button_editphoto = (Button)findViewById(R.id.button_editfoto);
         profile_image = (CircleImageView) findViewById(R.id.foto_profil);
 
-//        EditButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                SaveEditDetail();
-//            }
-//        });
-
         HashMap<String, String> user = sessionManager.getUserDetail();
 //        getId = user.get(sessionManager.ID);
         getId = "USR0000001";
@@ -108,19 +93,15 @@ public class profile extends AppCompatActivity {
         //Receiving value into activity using intent
         String TempHolder1 = getIntent().getStringExtra("UsernameTAG");
 
-//
-//        //Setting up received value into EditText
-//        Username.setText(Username.getText() + TempHolder1);
-
-
-        //Adding click listener to logout button
-       Button_editphoto.setOnClickListener(new View.OnClickListener() {
+//Adding click listener to logout button
+        Button_editphoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               //Showing echo response message from server
-               chooseFile();
+                //Showing echo response message from server
+                chooseFile();
             }
         });
+
     }
     private void getUserDetail(){
         final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -140,8 +121,8 @@ public class profile extends AppCompatActivity {
 
                             if (success.equals("200")){
                                 for (int i =0; i < jsonArray.length(); i++){
-                                   JSONObject object = jsonArray.getJSONObject(i);
-                                   String strUsername = object.getString("USERNAME").trim();
+                                    JSONObject object = jsonArray.getJSONObject(i);
+                                    String strUsername = object.getString("USERNAME").trim();
                                     String strNama = object.getString("NAMA").trim();
                                     String strAlamat = object.getString("ALAMAT").trim();
                                     String strNomer = object.getString("NOMER").trim();
@@ -157,7 +138,7 @@ public class profile extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                             progressDialog.dismiss();
-                            Toast.makeText(profile.this, "Error Reading Detail" + e.toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProfilActivity.this, "Error Reading Detail" + e.toString(), Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -165,8 +146,8 @@ public class profile extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                    progressDialog.dismiss();
-                    Toast.makeText(profile.this, "Error reading Detail" +error.toString(), Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                        Toast.makeText(ProfilActivity.this, "Error reading Detail" +error.toString(), Toast.LENGTH_SHORT).show();
 
                     }
                 })
@@ -257,25 +238,25 @@ public class profile extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                    progressDialog.dismiss();
+                        progressDialog.dismiss();
                         try {
                             JSONObject jsonObject= new JSONObject(response);
                             String success = jsonObject.getString("data");
 
                             if (success.equals("200")){
-                                Toast.makeText(profile.this, "sukses", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ProfilActivity.this, "sukses", Toast.LENGTH_SHORT).show();
 
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(profile.this, "Error"+e.toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProfilActivity.this, "Error"+e.toString(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(profile.this, "Error"+error.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProfilActivity.this, "Error"+error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 })
         {
@@ -295,17 +276,17 @@ public class profile extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-        private void chooseFile(){
+    private void chooseFile(){
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Pilih gambar"), 1);
-        }
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode==RESULT_OK && data != null && data.getData() != null) {
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri filePath = data.getData();
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
@@ -319,44 +300,46 @@ public class profile extends AppCompatActivity {
         }
     }
 
-    private void UploadPicture(final String id, final String gambar) {
+    private void UploadPicture(final String id, final String GAMBAR) {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Uploading...");
         progressDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_UPLOAD,
+        StringRequest stringRequest = new StringRequest(Request.Method.PUT, URL_UPLOAD,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         progressDialog.dismiss();
-                        Log.i(TAG, response.toString());
+                        Log.i(TAG, response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            String success = jsonObject.getString("success");
-                            if (success.equals("1")){
-                                Toast.makeText(profile.this, "Sukses", Toast.LENGTH_SHORT).show();
+                            String status = jsonObject.getString("status");
+                            String error = jsonObject.getString("error");
+                            String message = jsonObject.getString("message");
+                            if (status.equals("200") && error.equals("false")){
+                                Toast.makeText(ProfilActivity.this, message, Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(ProfilActivity.this, message, Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e){
                             e.printStackTrace();
                             progressDialog.dismiss();
-                            Toast.makeText(profile.this, "Coba Lagi" + e.toString(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
+                            Toast.makeText(ProfilActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
+                        }                    }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         progressDialog.dismiss();
-                        progressDialog.dismiss();
-                        Toast.makeText(profile.this, "Coba Lagi" + error.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProfilActivity.this, "Coba Lagi" + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 })
         {
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<>();
                 params.put("ID_USR", id);
-                params.put("GAMBAR", gambar);
+                params.put("GAMBAR", GAMBAR);
                 return params;
             }
         };
@@ -371,4 +354,5 @@ public class profile extends AppCompatActivity {
         String encodedimage = Base64.encodeToString(imageByteArray, Base64.DEFAULT);
         return  encodedimage;
     }
+
 }

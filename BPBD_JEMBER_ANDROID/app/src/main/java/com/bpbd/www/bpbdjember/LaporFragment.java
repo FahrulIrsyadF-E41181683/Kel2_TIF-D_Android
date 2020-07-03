@@ -12,6 +12,11 @@ import android.os.Bundle;
 
 
 import android.provider.MediaStore;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -119,7 +124,7 @@ public class LaporFragment extends Fragment {
             }
         });
 
-        adapter = new AdapterKategori(getActivity(), listKategori);
+        adapter = new AdapterKategori((AppCompatActivity) getActivity(), listKategori);
         spinnerKategori.setAdapter(adapter);
         callData();
         return view;
@@ -271,6 +276,7 @@ public class LaporFragment extends Fragment {
                             if (message.equals("success")) {
                                     Intent intent = new Intent(getContext(), MainActivity.class);
 //                                    intent.putExtra("NAVIGATION", "AKUN");
+                                    Toast.makeText(getContext(),"Laporan Anda Berhasil ditambahkan", Toast.LENGTH_LONG).show();
                                     startActivity(intent);
                             } else {
                                 Toast.makeText(getContext(), "Gagal Melaporkan Bencana", Toast.LENGTH_LONG).show();

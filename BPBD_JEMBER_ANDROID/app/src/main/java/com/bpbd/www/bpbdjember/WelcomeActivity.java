@@ -3,7 +3,6 @@ package com.bpbd.www.bpbdjember;
 import android.content.Intent;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 public class WelcomeActivity extends AppCompatActivity {
