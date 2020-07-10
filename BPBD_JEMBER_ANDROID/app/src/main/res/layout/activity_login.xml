@@ -9,17 +9,26 @@
     android:paddingLeft="30dp"
     android:paddingRight="30dp"
     android:paddingTop="100dp"
-    android:background="@drawable/bg"
+    android:background="@drawable/bg4"
     tools:context="com.bpbd.www.bpbdjember.LoginActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="150dp"
+        android:layout_height="163dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/tlogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="36dp"
-        android:layout_marginBottom="20dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="12dp"
         android:text="Login Akun"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="28sp"
         android:textStyle="bold"/>
 
@@ -90,8 +99,7 @@
         android:id="@+id/btn_login"
         android:layout_width="150dp"
         android:layout_height="45dp"
-        android:layout_marginRight="30dp"
-        android:layout_gravity="right"
+        android:layout_gravity="center"
         android:text="Login"
         android:background="@drawable/rounded_button"
         android:textColor="@color/white"
@@ -99,10 +107,10 @@
 
     <TextView
         android:gravity="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:text="Belum memiliki akun?"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="160dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_login"/>
@@ -110,10 +118,10 @@
     <TextView
         android:id="@+id/tvRegis"
         android:gravity="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:text="Daftar disini"
         android:textStyle="bold"
-        android:layout_marginLeft="185dp"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

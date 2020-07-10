@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
     }
 
-    private boolean loadFragment(BeritaFragment fragment) {
+    private boolean loadFragment(Fragment fragment) {
         if (fragment != null) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fl_container, fragment)
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     // method listener untuk logika pemilihan
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Fragment fragment = null;
+        Fragment fragment = new BeritaFragment();
         switch (item.getItemId()){
             case R.id.beranda:
                 fragment = new BeritaFragment();
@@ -117,7 +118,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 getSupportActionBar().setTitle("Pengaturan");
                 break;
         }
-        return loadFragment((BeritaFragment) fragment);
+
+        return loadFragment(fragment);
     }
 
 }

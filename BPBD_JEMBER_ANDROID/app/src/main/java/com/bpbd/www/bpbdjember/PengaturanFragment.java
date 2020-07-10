@@ -33,14 +33,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bpbd.www.bpbdjember.response.SessionManager;
+import com.bpbd.www.bpbdjember.helper.SessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import androidx.fragment.app.Fragment;
-
-public class PengaturanFragment extends Fragment {
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -50,7 +48,6 @@ import java.util.Map;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PengaturanFragment extends Fragment {
-    private static final String TAG= ProfilActivity.class.getSimpleName();
     private EditText Username, Nama, Email, Alamat, Nomer;
     private Menu action;
     private Bitmap bitmap;
@@ -61,9 +58,6 @@ public class PengaturanFragment extends Fragment {
     private SessionManager sessionManager;
     private String getId;
     private String BaseUrl;
-    private String URL_EDIT = "http://192.168.1.15/Kel2_TIF-D/BPBD_JEMBER_WEB/api/profil/getprofil";
-    private String URL_SAVE = "http://192.168.1.15/Kel2_TIF-D/BPBD_JEMBER_WEB/api/profil/Profil";
-    private String URL_UPLOAD = "http://192.168.1.15/Kel2_TIF-D/BPBD_JEMBER_WEB/api/profil/getFoto";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,6 +67,7 @@ public class PengaturanFragment extends Fragment {
 //        sessionManager.checkLogin();
 
         //Assign ID's to TextView and button
+        setHasOptionsMenu(true);
         Username = view.findViewById(R.id.username);
         Nama = view.findViewById(R.id.nama);
         Email = view.findViewById(R.id.email);
@@ -82,8 +77,12 @@ public class PengaturanFragment extends Fragment {
         Button_editphoto = view.findViewById(R.id.button_editfoto);
         profile_image = view.findViewById(R.id.foto_profil);
         HashMap<String, String> user = sessionManager.getUserDetail();
-//        getId = user.get(sessionManager.ID);
-        getId = "USR0000001";
+        getId = user.get(SessionManager.ID);
+
+        BaseUrl = SessionManager.BASE_URL;
+
+
+
 
         getUserDetail();
 
@@ -104,7 +103,7 @@ public class PengaturanFragment extends Fragment {
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading...");
         progressDialog.show();
-
+        String URL_SAVE = BaseUrl + "api/Profil/Profil";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SAVE,
                 new Response.Listener<String>() {
                     @Override
@@ -144,7 +143,7 @@ public class PengaturanFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         progressDialog.dismiss();
-                        Toast.makeText(getContext(), "Error reading Detail" +error.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Error Detail" +error.toString() + BaseUrl + getId, Toast.LENGTH_SHORT).show();
 
                     }
                 })
@@ -169,13 +168,11 @@ public class PengaturanFragment extends Fragment {
         getUserDetail();
     }
 
-
-    private boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getActivity().getMenuInflater();
-        menuInflater.inflate(R.menu.menu_action, menu);
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_action, menu);
         action = menu;
         action.findItem(R.id.menu_save).setVisible(false);
-        return true;
+        super.onCreateOptionsMenu(menu,inflater);
     }
 
     @Override
@@ -230,7 +227,7 @@ public class PengaturanFragment extends Fragment {
         progressDialog.setMessage("Menyimpan...");
         progressDialog.show();
 
-
+        String URL_EDIT = BaseUrl + "api/Profil/getprofil";
         StringRequest stringRequest = new StringRequest(Request.Method.PUT, URL_EDIT,
                 new Response.Listener<String>() {
                     @Override
@@ -302,12 +299,13 @@ public class PengaturanFragment extends Fragment {
         progressDialog.setMessage("Uploading...");
         progressDialog.show();
 
+        String URL_UPLOAD = BaseUrl + "api/Profil/getFoto";
         StringRequest stringRequest = new StringRequest(Request.Method.PUT, URL_UPLOAD,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         progressDialog.dismiss();
-                        Log.i(TAG, response);
+
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String status = jsonObject.getString("status");

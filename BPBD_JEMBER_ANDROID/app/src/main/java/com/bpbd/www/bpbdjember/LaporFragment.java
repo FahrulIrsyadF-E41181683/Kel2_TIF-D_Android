@@ -93,7 +93,8 @@ public class LaporFragment extends Fragment {
         tanggal = view.findViewById(R.id.tanggal);
         sessionManager = new SessionManager(getContext());
         progressDialog = new ProgressDialog(getContext());
-        BaseUrl = sessionManager.BASE_URL;
+        BaseUrl = SessionManager.BASE_URL;
+        myCalendar =  Calendar.getInstance();
 
 
         spinnerKategori.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

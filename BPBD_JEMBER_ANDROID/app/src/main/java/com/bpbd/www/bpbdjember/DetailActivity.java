@@ -36,7 +36,7 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                String bodyText = "http://192.168.1.3/Kel2_TIF-D/BPBD_JEMBER_WEB/beranda/baca/" + getIntent().getStringExtra("ID_BERITA");
+                String bodyText = "http://laporbpbd.wsjti.com/beranda/baca/" + getIntent().getStringExtra("ID_BERITA");
                 intent.putExtra(Intent.EXTRA_SUBJECT, bodyText);
                 intent.putExtra(Intent.EXTRA_TEXT, bodyText);
                 startActivity(intent.createChooser(intent, "Share Option"));
