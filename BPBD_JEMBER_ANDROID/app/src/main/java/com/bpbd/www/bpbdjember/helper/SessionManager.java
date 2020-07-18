@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.bpbd.www.bpbdjember.LoginActivity;
+import com.bpbd.www.bpbdjember.PengaturanFragment;
+import com.bpbd.www.bpbdjember.WelcomeActivity;
 //import com.bpbd.www.bpbdjember.ProfilActivity;
 
 import java.util.HashMap;
@@ -36,21 +38,15 @@ public class SessionManager {
 
     private boolean isLogin() { return  sharedPreferences.getBoolean(LOGIN, false); }
 
-//    public void checkLogin(){
-//        if (!this.isLogin()){
-//            Intent intent = new Intent(context, Login.class);
-//            context.startActivity(intent);
-//            ((BerandaOrenz) context).finish();
-//        }
-//    }
+    public void checkLogin(){
+        if (!this.isLogin()){
+            Intent intent = new Intent(context, LoginActivity.class);
+            context.startActivity(intent);
+            ((WelcomeActivity) context).finish();
+        }
+    }
 
-// public void checkLogin(){
-//        if (!this.isLogin()){
-//            Intent i = new Intent(context, LoginActivity.class);
-//            context.startActivity(i);
-//            ((ProfilActivity) context).finish();
-//        }
-//    }
+
 
     public HashMap<String, String> getUserDetail(){
         HashMap<String, String> user = new HashMap<>();

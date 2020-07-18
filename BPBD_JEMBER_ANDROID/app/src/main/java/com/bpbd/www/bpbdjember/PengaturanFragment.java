@@ -47,6 +47,8 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static android.content.ContentValues.TAG;
+
 public class PengaturanFragment extends Fragment {
     private EditText Username, Nama, Email, Alamat, Nomer;
     private Menu action;
@@ -54,7 +56,7 @@ public class PengaturanFragment extends Fragment {
     //creating ImageView
     private CircleImageView profile_image;
     //creating button
-    private Button EditButton, Button_editphoto;
+    private Button Button_editphoto;
     private SessionManager sessionManager;
     private String getId;
     private String BaseUrl;
@@ -64,7 +66,7 @@ public class PengaturanFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pengaturan, container, false);
         sessionManager = new SessionManager(getContext());
-//        sessionManager.checkLogin();
+        sessionManager.checkLogin();
 
         //Assign ID's to TextView and button
         setHasOptionsMenu(true);
@@ -77,7 +79,7 @@ public class PengaturanFragment extends Fragment {
         Button_editphoto = view.findViewById(R.id.button_editfoto);
         profile_image = view.findViewById(R.id.foto_profil);
         HashMap<String, String> user = sessionManager.getUserDetail();
-        getId = user.get(SessionManager.ID);
+        getId = user.get(sessionManager.ID);
 
         BaseUrl = SessionManager.BASE_URL;
 
@@ -87,7 +89,7 @@ public class PengaturanFragment extends Fragment {
         getUserDetail();
 
         //Receiving value into activity using intent
-        String TempHolder1 = getActivity().getIntent().getStringExtra("UsernameTAG");
+//        String TempHolder1 = getActivity().getIntent().getStringExtra("UsernameTAG");
 
 //Adding click listener to logout button
         Button_editphoto.setOnClickListener(new View.OnClickListener() {
